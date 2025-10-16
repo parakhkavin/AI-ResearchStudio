@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: research_backend
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - chromadb
+    volumes:
+      - ./backend:/app
+      - ./data/chroma:/data/chroma
+
+  frontend:
+    build: ./frontend
+    container_name: research_frontend
+    environment:
+      NEXT_PUBLIC_BACKEND_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15
+    container_name: research_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: airesearch
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./data/chroma:/data/chroma
+
+volumes:
+  postgres_data:

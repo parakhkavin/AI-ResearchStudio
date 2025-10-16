@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+psycopg2-binary
+sqlalchemy
+langchain
+langchain-openai
+chromadb
+python-dotenv
+pydantic
+pypdf
+requests
+python-multipart
+tiktoken
+beautifulsoup4

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 250 250 255;
+  --fg: 16 24 40;
+  --muted: 102 112 133;
+  --card: 255 255 255;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  @apply bg-gradient-to-br from-white via-[rgb(248,250,255)] to-[rgb(240,245,255)] text-slate-800 antialiased;
+  background-attachment: fixed;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8;
+}
+
+.glass {
+  @apply bg-white/60 backdrop-blur-md shadow-lg ring-1 ring-black/5;
+}
+
+.card {
+  @apply rounded-2xl p-5 glass;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 font-medium shadow-sm transition;
+}
+
+.btn-primary {
+  @apply btn bg-blue-600 text-white hover:bg-blue-700 active:scale-[.98];
+}
+
+.btn-ghost {
+  @apply btn bg-white/40 hover:bg-white/60 ring-1 ring-black/5;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset;
+}
+
+.badge-blue {
+  @apply badge bg-blue-50 text-blue-700 ring-blue-200;
+}
+
+.section-title {
+  @apply text-2xl md:text-3xl font-bold tracking-tight;
+}
+
+.subtle {
+  @apply text-sm text-slate-500;
+}
+
+hr.separator {
+  @apply my-6 border-slate-200/70;
+}
+
+.shadow-soft {
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 10px 30px rgba(0,0,0,.06);
+}
+
+/* Animated gradient ring */
+.gradient-ring {
+  position: relative;
+  border-radius: 1.25rem;
+}
+
+.gradient-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 1.3rem;
+  background: conic-gradient(from 180deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
+  filter: blur(8px);
+  opacity: .45;
+}
